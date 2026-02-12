@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { FormsModule } from '@angular/forms';
+import { ResultsComponent } from './results/results.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CalculatorComponent
+    CalculatorComponent,
+    ResultsComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,

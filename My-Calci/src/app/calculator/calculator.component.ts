@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-calculator',
@@ -7,13 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalculatorComponent {
 
+
+  constructor(private router: Router) {}
+
   num1: number = 0;
   num2: number = 0;
+  output: string='';
 
   selectedOperation: string = '';
   result: number | null = 0;
-isHistoryAdded: boolean = false;
-
   history: string[] = [];
 
   selectOperation(op: string) {
@@ -36,24 +39,42 @@ isHistoryAdded: boolean = false;
       this.result = this.num1 / this.num2;
     }
 
-    this.history.push(
-      `${this.num1} ${this.selectedOperation} ${this.num2} = ${this.result}`
-    );
-     this.isHistoryAdded = false;
+    if (this.result === null) {
+      return;
+    }
+
+    this.output =`${this.num1} ${this.selectedOperation} ${this.num2} = ${this.result}`;
+    if(!this.history.includes(this.output)){
+    this.history.push(this.output);
+    }
 
   }
 
-getHistory(){
-  if(!this.isHistoryAdded && this.result !== null){
- this.history.push(
-      `${this.num1} ${this.selectedOperation} ${this.num2} = ${this.result}`
-    );
+  getHistory() {
+    if (this.result === null || !this.selectedOperation) {
+      return;
+    }
+    const entry = `${this.num1} ${this.selectedOperation} ${this.num2} = ${this.result}`;
+    if (!this.history.includes(entry)) {
+      this.history.push(entry);
+    }
+  }
+  
+
+  viewResult() {
+    if (this.result === null) {
+      return;
+    }
+  
+    this.router.navigate([
+      '/results',
+      this.num1,
+      this.num2,
+      this.selectedOperation,
+      this.result
+    ]);
   }
 
-      this.isHistoryAdded = true;
-}
-
-  constructor() { }
 
   ngOnInit(): void {
   }

@@ -26,7 +26,10 @@
 </button>
 
 <br><br>
-<button (click)="calculate()">=</button>
+<button (click)="calculate()">=</button> &nbsp;
+<button (click)="viewResult()" [disabled]="result === null || selectedOperation === ''">
+  View Result
+</button>
 
 <h4 *ngIf="result !== undefined">Result: {{ result }}</h4>
 

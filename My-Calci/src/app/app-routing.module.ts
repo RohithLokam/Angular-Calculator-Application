@@ -2,10 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CalculatorComponent } from './calculator/calculator.component';
+import { ResultsComponent } from './results/results.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
-  {path:'calculator',component:CalculatorComponent}
+  { path: 'results/:num1/:num2/:op/:result', component: ResultsComponent,canActivate:[AuthGuard] },
+  {path:'calculator',component:CalculatorComponent},
+  {path:'home',redirectTo:'',pathMatch:'full'},
+  {path:'**',component:PagenotfoundComponent}
 ];
 
 @NgModule({
