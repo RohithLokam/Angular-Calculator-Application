@@ -36,6 +36,9 @@ isHistoryAdded: boolean = false;
       this.result = this.num1 / this.num2;
     }
 
+    this.history.push(
+      `${this.num1} ${this.selectedOperation} ${this.num2} = ${this.result}`
+    );
      this.isHistoryAdded = false;
 
   }
