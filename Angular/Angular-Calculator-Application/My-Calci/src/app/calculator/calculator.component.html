@@ -1,0 +1,41 @@
+<h3>Calculator</h3>
+
+<input type="number" [(ngModel)]="num1" placeholder="Number 1">
+<br><br>
+
+<input type="number" [(ngModel)]="num2" placeholder="Number 2">
+<br><br>
+
+<button
+  (click)="selectOperation('+')"
+  [ngStyle]="{ 'background-color': selectedOperation === '+' ? 'lightblue' : '' }">
+  +
+</button>
+<button
+  (click)="selectOperation('-')"
+  [ngStyle]="{ 'background-color': selectedOperation === '-' ? 'lightblue' : '' }">
+  -</button>
+<button
+  (click)="selectOperation('*')"
+  [ngStyle]="{ 'background-color': selectedOperation === '*' ? 'lightblue' : '' }">
+  *</button>
+<button
+  (click)="selectOperation('/')"
+  [ngStyle]="{ 'background-color': selectedOperation === '/' ? 'lightblue' : '' }">
+  /
+</button>
+
+<br><br>
+<button (click)="calculate()">=</button>
+
+<h4 *ngIf="result !== undefined">Result: {{ result }}</h4>
+
+<hr>
+
+<button (click)="getHistory()">Get History</button>
+<h4>History</h4>
+<ul>
+  <li *ngFor="let item of history">
+    {{ item }}
+  </li>
+</ul>
