@@ -8,6 +8,8 @@ import { CalculatorComponent } from './calculator/calculator.component';
 import { FormsModule } from '@angular/forms';
 import { ResultsComponent } from './results/results.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     HomeComponent,
     CalculatorComponent,
     ResultsComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    LoginComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
