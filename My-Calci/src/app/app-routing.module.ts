@@ -10,7 +10,7 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   {path:'',component:HomeComponent},
   { path: 'results/:num1/:num2/:op/:result', component: ResultsComponent,canActivate:[AuthGuard] },
-  {path:'calculator',component:CalculatorComponent},
+  {path:'calculator',component:CalculatorComponent, canActivate:[AuthGuard] },
   {path:'login',component:LoginComponent},
   {path:'home',redirectTo:'',pathMatch:'full'},
   {path:'**',component:PagenotfoundComponent}

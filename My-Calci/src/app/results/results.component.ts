@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CalculatorComponent } from '../calculator/calculator.component';
+import { ServiceService } from '../service.service';
 
 @Component({
   selector: 'app-results',
@@ -13,7 +15,7 @@ export class ResultsComponent implements OnInit {
   operation!: string;
   result!: number;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router, private service:ServiceService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -22,6 +24,13 @@ export class ResultsComponent implements OnInit {
       this.operation = params['op'];
       this.result = +params['result'];
     });
+
+    console.log(this.service.IsResult());
+    if (!this.service.IsResult()) {
+      this.router.navigate(['/calculator']);
+    }
+
+
   }
 
 }

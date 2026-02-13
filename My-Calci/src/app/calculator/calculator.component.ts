@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ServiceService } from '../service.service';
 
 @Component({
   selector: 'app-calculator',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 export class CalculatorComponent {
 
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private service: ServiceService) {}
 
   num1: number = 0;
   num2: number = 0;
@@ -45,6 +46,7 @@ export class CalculatorComponent {
 
     this.output =`${this.num1} ${this.selectedOperation} ${this.num2} = ${this.result}`;
     if(!this.history.includes(this.output)){
+      this.service.setResultPresent(true);
     this.history.push(this.output);
     }
 
@@ -77,6 +79,7 @@ export class CalculatorComponent {
 
 
   ngOnInit(): void {
+    localStorage.setItem('hasResult', 'false');
   }
 
 }
