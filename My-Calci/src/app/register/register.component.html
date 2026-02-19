@@ -1,0 +1,43 @@
+<form [formGroup]="registerForm" (ngSubmit)="register()" class="login-wrapper">
+    <div class="login-card">
+        <h2 class="login-title">Register</h2>
+        <div class="form-group">
+            <label for="userName">User Name</label>
+            <input id="userName" type="text" pInputText formControlName="userName" placeholder="Enter user name" />
+            <div *ngIf="f['userName'].invalid && f['userName'].touched" class="error">
+                <span *ngIf="f['userName'].errors?.required">
+                    User name is required
+                </span>
+
+                <span *ngIf="f['userName'].errors?.minlength">
+                    User name must be at least 3 characters
+                </span>
+
+                <span *ngIf="f['userName'].errors?.maxlength">
+                    User name must be at most 10 characters
+                </span>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" pInputText formControlName="password" placeholder="Enter password" />
+            <div *ngIf="f['password'].invalid && f['password'].touched" class="error">
+                <span *ngIf="f['password'].errors?.required">
+                    Password is required
+                </span>
+
+                <span *ngIf="f['password'].errors?.minlength">
+                    Password must be at least 6 characters
+                </span>
+
+                <span *ngIf="f['password'].errors?.maxlength">
+                    Password must below 18 characters
+                </span>
+            </div>
+
+        </div>
+        <button pButton type="submit" label="Register" class="login-button" [disabled]="registerForm.invalid"></button>
+        <a routerLink="/login">login</a>
+    </div>
+</form>

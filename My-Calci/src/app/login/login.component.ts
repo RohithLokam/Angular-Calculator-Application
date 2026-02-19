@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { ServiceService } from '../service.service';
-import { InputTextModule } from 'primeng/inputtext';
+import { NgForm } from '@angular/forms';
+import { PasswordModule } from 'primeng/password';
 
 
 
@@ -22,12 +23,18 @@ export class LoginComponent implements OnInit {
   password: string='';
   user: boolean = false;
 
-  login(){
-    this.user = this.service.login(this.userName, this.password);
+  login(form: NgForm) {
+    if (form.invalid) {
+      form.control.markAllAsTouched();
+      return;
+    }
+    this.user = this.service.login(form.value.userName, form.value.password);
     if (this.user) {
       alert('Login successful');
       this.router.navigate(['/home']);
     } else {
+      form.value.userName = '';
+      form.value.password = '';
       alert('Invalid credentials');
     }
 

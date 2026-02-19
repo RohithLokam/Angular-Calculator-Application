@@ -6,11 +6,14 @@ import { ResultsComponent } from './results/results.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
+  {path:'',component:HomeComponent,canActivate:[AuthGuard]},
   { path: 'results/:num1/:num2/:op/:result', component: ResultsComponent,canActivate:[AuthGuard] },
   {path:'calculator',component:CalculatorComponent, canActivate:[AuthGuard] },
+  {path:'register',component:RegisterComponent },
   {path:'login',component:LoginComponent},
   {path:'home',redirectTo:'',pathMatch:'full'},
   {path:'**',component:PagenotfoundComponent}

@@ -1,5 +1,3 @@
-
-
 <!-- <div class="login-container">
     <p>Login Form</p>
 <input type="text" pInputText  class="p-mb-3" [(ngModel)]="userName" placeholder="User Name">
@@ -11,39 +9,47 @@
 <button pButton (click)="login()">Login</button>
 </div> -->
 
-<div class="login-wrapper">
-    <div class="login-card">
-      <h2 class="login-title">Login</h2>
-  
-      <div class="form-group">
-        <label for="username">User Name</label>
-        <input
-          id="username"
-          type="text"
-          pInputText
-          [(ngModel)]="userName"
-          placeholder="Enter your user name"
-        />
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="login-wrapper">
+  <div class="login-card">
+    <h2 class="login-title">Login</h2>
+
+    <div class="form-group">
+      <label for="username">User Name</label>
+      <input id="username" type="text" pInputText name="userName" ngModel required minlength="3" maxlength="10"
+        placeholder="Enter your user name" />
+      <div *ngIf="loginForm.controls['userName']?.invalid &&
+               loginForm.controls['userName']?.touched" class="error">
+        <span *ngIf="loginForm.controls['userName']?.errors?.required">
+          User name is required
+        </span>
+        <span *ngIf="loginForm.controls['userName']?.errors?.minlength">
+          User name must be at least 3 characters
+        </span>
+        <span *ngIf="loginForm.controls['userName']?.errors?.maxlength">
+          User name must be at most 10 characters
+        </span>
       </div>
-  
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          pInputText
-          [(ngModel)]="password"
-          placeholder="Enter your password"
-        />
-      </div>
-  
-      <button
-        pButton
-        type="button"
-        label="Login"
-        class="login-button"
-        (click)="login()"
-      ></button>
     </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input id="password" type="password" pInputText name="password" ngModel required minlength="6" maxlength="18"
+        placeholder="Enter your password" />
+      <div *ngIf="loginForm.controls['password']?.invalid &&
+               loginForm.controls['password']?.touched" class="error">
+        <span *ngIf="loginForm.controls['password']?.errors?.required">
+          Password is required
+        </span>
+        <span *ngIf="loginForm.controls['password']?.errors?.minlength">
+          Password must be at least 6 characters
+        </span>
+        <span *ngIf="loginForm.controls['password']?.errors?.maxlength">
+          Password must be below 18 characters
+        </span>
+      </div>
+    </div>
+
+    <button pButton type="submit" label="Login" class="login-button" [disabled]="loginForm.invalid"></button>
+    <a routerLink="/register">Register</a>
   </div>
-  
+</form>

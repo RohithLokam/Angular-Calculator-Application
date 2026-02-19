@@ -11,6 +11,10 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { ButtonModule } from 'primeng/button';
+import { PasswordModule } from 'primeng/password';
+import { RegisterComponent } from './register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -20,13 +24,16 @@ import { ButtonModule } from 'primeng/button';
     ResultsComponent,
     PagenotfoundComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ButtonModule
+    ButtonModule,
+    PasswordModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

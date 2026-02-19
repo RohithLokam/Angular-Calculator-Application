@@ -22,9 +22,16 @@ export class ServiceService {
 
   constructor() { }
 
+  
+  addUser(userName: string, password: string): void {
+    this.userData.push({ userName, password });
+    console.log('Users:', this.userData);
+  }
  
 
   login(userName: string, password: string): boolean {
+    console.log('Trying login with:', userName, password);
+    console.log('Current users:', this.userData);
     for (let i = 0; i < this.userData.length; i++) {
       const u = this.userData[i];
       if (u.userName === userName && u.password === password) {
@@ -53,6 +60,7 @@ export class ServiceService {
     this.hasResult = (value === 'true');
     return this.hasResult;
   }
+
 
 
 }
