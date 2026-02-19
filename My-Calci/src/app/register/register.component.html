@@ -4,7 +4,7 @@
         <div class="form-group">
             <label for="userName">User Name</label>
             <input id="userName" type="text" pInputText formControlName="userName" placeholder="Enter user name" />
-            <div *ngIf="f['userName'].invalid && f['userName'].touched" class="error">
+            <div *ngIf="registerForm.get('userName')?.invalid && f['userName'].touched" class="error">
                 <span *ngIf="f['userName'].errors?.required">
                     User name is required
                 </span>

@@ -41,6 +41,13 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    let arr: number[]=[1,2,3];
+    arr[1]=4;
+    const arr1: number[]=[2,3,4,5];
+    arr = arr1;
+    console.log(arr);
+    
   }
 
 }

@@ -14,6 +14,7 @@ import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EmployeeDataComponent } from './employee-data/employee-data.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     PagenotfoundComponent,
     LoginComponent,
     HeaderComponent,
-    RegisterComponent
+    RegisterComponent,
+    EmployeeDataComponent
   ],
   imports: [
     BrowserModule,
