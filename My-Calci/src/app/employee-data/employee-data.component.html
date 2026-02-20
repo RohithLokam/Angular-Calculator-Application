@@ -4,15 +4,104 @@
     <br>
     <h2>Employee Registration Form</h2>
     <label for="employeeName">Employee Name : </label>
-    <input type="text" formControlName="employeeName" placeholder="Employee Name"/>  <br><br>
+    <input type="text" formControlName="employeeName" placeholder="Employee Name" />
+    <div *ngIf="employeeForm.get('employeeName')?.invalid 
+            && employeeForm.get('employeeName')?.touched">
+        <small *ngIf="employeeForm.get('employeeName')?.errors?.required">
+            Name is required
+        </small>
+
+        <small *ngIf="employeeForm.get('employeeName')?.errors?.minlength">
+            Minimum 3 characters required
+        </small>
+
+        <small *ngIf="employeeForm.get('employeeName')?.errors?.maxlength">
+            Maximum 18 characters allowed
+        </small>
+
+        <small *ngIf="employeeForm.get('employeeName')?.errors?.pattern">
+            Only alphabets allowed
+        </small>
+    </div>
+    <br><br>
     <label for="email">Email : </label>
-    <input type="email" formControlName="email" placeholder="Email"/>  <br><br>
+    <input type="email" formControlName="email" placeholder="Email" />
+    <div *ngIf="employeeForm.get('email')?.invalid 
+            && employeeForm.get('email')?.touched">
+        <small *ngIf="employeeForm.get('email')?.errors?.required">
+            Email is required
+        </small>
+
+        <small *ngIf="employeeForm.get('email')?.errors?.email">
+            Invalid email format
+        </small>
+    </div> <br><br>
     <label for="phoneNumber">Phone Number : </label>
-    <input type="tel" formControlName="phoneNumber" placeholder="Phone Number"/>  <br><br>
+    <input type="tel" formControlName="phoneNumber" placeholder="Phone Number" />
+    <div *ngIf="employeeForm.get('phoneNumber')?.invalid 
+            && employeeForm.get('phoneNumber')?.touched">
+        <small *ngIf="employeeForm.get('phoneNumber')?.errors?.required">
+            Phone number is required
+        </small>
+
+        <small *ngIf="employeeForm.get('phoneNumber')?.errors?.pattern">
+            Phone number must be 10 digits
+        </small>
+    </div> <br><br>
     <label for="DOE">Date Of Employment : </label>
-    <input type="date" formControlName="DOE"/>  <br><br>
+    <input type="date" formControlName="DOE" /> <br><br>
     <label for="salary">Salary : </label>
-    <input type="number" formControlName="salary" placeholder="Salary"/>  <br><br>
+    <input type="number" formControlName="salary" placeholder="Salary" />
+    <div *ngIf="employeeForm.get('salary')?.invalid 
+            && employeeForm.get('salary')?.touched">
+        <small *ngIf="employeeForm.get('salary')?.errors?.required">
+            Salary is required
+        </small>
+
+        <small *ngIf="employeeForm.get('salary')?.errors?.min">
+            Minimum salary is 8000
+        </small>
+
+        <small *ngIf="employeeForm.get('salary')?.errors?.max">
+            Salary too high
+        </small>
+    </div> <br><br>
     <button type="submit" [disabled]="employeeForm.invalid">Submit</button>
 
 </form>
+
+
+<hr>
+
+<h3>Employee List</h3>
+<hr>
+
+<input type="search" ngsearch placeholder="Search by Name,Email,Phone" [(ngModel)]="searchText" (input)="onSearch()" />
+<br><br>
+<table border="5" *ngIf="employees.length > 0">
+    <thead>
+        <tr>
+            <th>EmpId</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>DOE</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let emp of filteredEmployees">
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.employeeName }}</td>
+            <td>{{ emp.email }}</td>
+            <td>{{ emp.phoneNumber }}</td>
+            <td>{{ emp.DOE | date }}</td>
+            <td>{{ emp.salary | currency:'INR':'symbol':'1.0-0' }}</td>
+            <td>
+  <button (click)="editEmployee(emp)">Edit</button>
+  <button (click)="deleteEmployee(emp.id)">Delete</button>
+</td>
+        </tr>
+    </tbody>
+</table>
